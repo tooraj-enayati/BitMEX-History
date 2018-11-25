@@ -1,5 +1,6 @@
 # BitMEX-History
 This script will add a menu item to your Google Sheet to get BitMEX account history.
+
 How to Use instructions:
 
 This script will add a menu item to your Google Sheet to get BitMEX account history.
@@ -10,7 +11,7 @@ How to SetupInstructions:
 Create sheet called "Settings"
 Add a row for each bot with the following headings - currently rows 1-2 and columns 1-5 are all ignored and only columns 
 
-Configuration						
+Configuration				
 Name<tab>Description<tab>Exchange<tab>Currency<tab>Download Limit<tab>API Key<tab>API Secret
 BOT1<tab>Short Bot<tab>BitMEX<tab>XBT<tab>100<tab><your key><tab><your secret>
 BOT2<tab>Long Bot<tab>BitMEX<tab>XBT<tab>100<tab><your key><tab><your secret>				
