@@ -11,10 +11,10 @@ You can select the menu option to download yoru history as many time as you want
 Create sheet called "Settings"
 Add a row for each bot with the following headings - currently rows 1-2 and columns 1-5 are all ignored and only columns 
 
-"Configuration"
-"Name", "Description", "Exchange", "Currency", "Download Limit", "API Key", "API Secret"
-"BOT1", "Short Bot", "BitMEX", "XBT", "100", "<your key>", "<your secret>
-"BOT2", "Long Bot", "BitMEX", "XBT", "100", "<your key>", "><your secret>				
+"Configuration"<br>
+"Name", "Description", "Exchange", "Currency", "Download Limit", "API Key", "API Secret"<br>
+"BOT1", "Short Bot", "BitMEX", "XBT", "100", "<your key>", "<your secret><br>
+	"BOT2", "Long Bot", "BitMEX", "XBT", "100", "<your key>", "<your secret>	<br>			
 
 Use the Tool > Script Editor for you Google Sheet to add all of this to the editor, the save it.
 
@@ -32,9 +32,9 @@ Once the permissions are granted, you shoudl see see a "Get BitMEX History" menu
 Developed by Tooraj Enayati
 </p>Copying and distribution is promitted as long as credits are given</b>
 Donation are greatly appreciated</b>
-        BTC: 3QSSMwKuoS4wRJQCNofnqBVitpheBDPx8w<br>
-        ETH: 0x5d883ef2ddac91034186b732cd1126cdb5d2c0f4<br>
-        LTC: MBsbj8q38seA3Pk6tZk1WY7DkFRf2Yf6x1<br>
+<t>BTC: 3QSSMwKuoS4wRJQCNofnqBVitpheBDPx8w<br>
+<t>ETH: 0x5d883ef2ddac91034186b732cd1126cdb5d2c0f4<br>
+<t>LTC: MBsbj8q38seA3Pk6tZk1WY7DkFRf2Yf6x1<br>
 Twitter: @tooraj_enayati<br>
 Telegram: ToorajEnayati<br>
 Email: tooraj@isc.com.au<br>
