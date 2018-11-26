@@ -58,16 +58,18 @@ function GetHistory() {
   //
   var ss = SpreadsheetApp.getActive();
   var notBlank=true, i=3;
-  var sheetConf = "Settings";
+  var sheetConf = "Settings"
   
   // For each bot listed in settings; get the API keys from the sheet
   while (notBlank){
     var botName = ss.getSheetByName(sheetConf).getRange(i,1).getValue();
+    var limit = ss.getSheetByName(sheetConf).getRange(i,5).getValue();
+    var sLimit = Utilities.formatString('%d', limit);
     var key = ss.getSheetByName(sheetConf).getRange(i,6).getValue();
     var secret = ss.getSheetByName(sheetConf).getRange(i,7).getValue();
     var destName = "PASTE" + String(i-2);
     if (botName!==""){
-      BitMEXGetHistory(key,secret,destName);
+      BitMEXGetHistory(sLimit,key,secret,destName);
       i++;
     }else{ notBlank = false;}
   }   
@@ -79,12 +81,12 @@ function GetHistory() {
 // apiSecret: the cell coordinate for reading the API secret
 // destSheet: The name of the configuration sheet to read from and write to
 //
-function BitMEXGetHistory(apiKey,apiSecret,destSheet){
+function BitMEXGetHistory(downLimit,apiKey,apiSecret,destSheet){
 
   // Constrcut the URL https://www.bitmex.com/api/v1/user/walletHistory?currency=XBt&count=100
   var webSite = "https://www.bitmex.com";
-  var path = "/api/v1/user/walletHistory?currency=XBt&count=500";
-  url = webSite + path
+  var path = "/api/v1/user/walletHistory?currency=XBt&count=" + downLimit;
+  url = webSite + path;
   
   // Construct the signature
   var nonce = Number(new Date().getTime()).toFixed(0);
