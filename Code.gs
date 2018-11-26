@@ -14,12 +14,12 @@
 // How to Use instructions:
 //
 // This script will add a menu item to your Google Sheet to get BitMEX account history.
-// You can select the menu option to download yoru history as many time as you want.
+// You can select the menu option to download your history as many time as you want.
 //--------------------
-// How to SetupInstructions:
+// How to Setup Instructions:
 //
 // Create sheet called "Settings"
-// Add a row for each bot with the following headings - currently rows 1-2 and columns 1-5 are all ignored and only columns 
+// Add a row for each bot with the following headings - currently rows 1-2 and columns 1-5 are all ignored and only columns 6 & 7 are used.
 //
 // Configuration						
 // Name<tab>Description<tab>Exchange<tab>Currency<tab>Download Limit<tab>API Key<tab>API Secret
@@ -27,10 +27,10 @@
 // BOT2<tab>Long Bot<tab>BitMEX<tab>XBT<tab>100<tab><your key><tab><your secret>				
 //
 // Use the Tool > Script Editor for you Google Sheet to add all of this to the editor, the save it.
-// Save it all, the close and reopen you Google Sheet. You willbe prompted to give the scrip run permissions.
-// Once the permissions are granted, you shoudl see see a "Get BitMEX History" menu option - USE IT :)
+// Save it all, the close and reopen you Google Sheet. You will be prompted to give the scrip run permissions.
+// Once the permissions are granted, you should see see a "Get BitMEX History" menu option - USE IT :)
 //--------------------
-// Future enhancemnets:
+// Future enhancements:
 // 1) Call the BitMEXGetHistory() for each bot/row
 // 2) Use the "Download Limit" column for getting the history for more than 100
 // 3) Use the "Currency" column for getting the history for other currencies
@@ -51,40 +51,39 @@ function createMenu() {
 
 
 function GetHistory() {
-/*
-  // The following needs is unfinished work to read the seeting for each bot and call BitMEXGetHistory() for each one
+
+  // Read the settings for each bot and call BitMEXGetHistory() for each one
+  //
+  // sheetConf: The name of the configuration sheet to read from
   //
   var ss = SpreadsheetApp.getActive();
   var notBlank=true, i=3;
+  var sheetConf = "Settings"
+  
+  // For each bot listed in settings; get the API keys from the sheet
   while (notBlank){
-    var botName = ss.getSheetByName("Settings").getRange(i,1).getValue();
+    var botName = ss.getSheetByName(sheetConf).getRange(i,1).getValue();
+    var key = ss.getSheetByName(sheetConf).getRange(i,6).getValue();
+    var secret = ss.getSheetByName(sheetConf).getRange(i,7).getValue();
+    var destName = "PASTE" + String(i-2);
     if (botName!==""){
-      // call BitMEXGetHistory()
+      BitMEXGetHistory(key,secret,destName);
       i++;
     }else{ notBlank = false;}
-  }
-*/    
-  BitMEXGetHistory("Settings","F3","G3","PASTE1");
-  BitMEXGetHistory("Settings","F4","G4","PASTE2");
+  }   
 }
 
 //
 // Reads the wallet history
-// sheetConf: The name of the configuration sheet to read from
-// Key: the cell coordinate for reading the API key
-// Secret: the cell coordinate for reading the API secret
+// apiKey: the cell coordinate for reading the API key
+// apiSecret: the cell coordinate for reading the API secret
 // destSheet: The name of the configuration sheet to read from and write to
 //
-function BitMEXGetHistory(sheetConf,Key,Secret,destSheet){
+function BitMEXGetHistory(apiKey,apiSecret,destSheet){
 
-  // First get the API keys from the sheet
-  var ss = SpreadsheetApp.getActive();
-  var apiKey = ss.getSheetByName(sheetConf).getRange(Key).getValue();
-  var apiSecret = ss.getSheetByName(sheetConf).getRange(Secret).getValue();
-  
   // Constrcut the URL https://www.bitmex.com/api/v1/user/walletHistory?currency=XBt&count=100
   var webSite = "https://www.bitmex.com";
-  var path = "/api/v1/user/walletHistory?currency=XBt&count=100";
+  var path = "/api/v1/user/walletHistory?currency=XBt&count=500";
   url = webSite + path
   
   // Construct the signature
