@@ -58,7 +58,7 @@ function GetHistory() {
   //
   var ss = SpreadsheetApp.getActive();
   var notBlank=true, i=3;
-  var sheetConf = "Settings"
+  var sheetConf = "Settings";
   
   // For each bot listed in settings; get the API keys from the sheet
   while (notBlank){
