@@ -133,6 +133,8 @@ function BitMEXGetHistory(downLimit,apiKey,apiSecret,destSheet){
   }
 
   var ss = SpreadsheetApp.getActive();
+  var currentSheet = ss.getSheetByName(destSheet);
+  currentSheet.clearContents();
   var header = [];
   header.push(["transactTime","transactType","amount","fee","address","transactStatus","walletBalance"]);
   var cell = ss.getSheetByName(destSheet).getRange(1,1,header.length, 7);
